@@ -4,7 +4,7 @@ namespace App\Models;
 
 use App\Core\Db;
 
-class F1News {
+class F1news {
 
 
     /**
