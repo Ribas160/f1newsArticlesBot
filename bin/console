@@ -1,0 +1,21 @@
+#!/usr/bin/env php
+<?php
+
+require 'vendor/autoload.php';
+
+// load all commands here from an external php file
+$commands  = [
+    \App\Commands\PublicArticle::class,
+];
+
+$application = new \Symfony\Component\Console\Application();
+
+foreach ($commands as $class) {
+    if (!class_exists($class)) {
+        throw new RuntimeException(sprintf('Class %s does not exist', $class));
+    }
+    $command = new $class();
+    $application->add($command);
+}
+
+$application->run();
