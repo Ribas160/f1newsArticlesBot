@@ -8,7 +8,7 @@ use App\Core\App;
 use App\Core\Controller;
 
 
-class AppController extends Controller
+class AppController
 {
 
 
