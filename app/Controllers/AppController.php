@@ -2,7 +2,7 @@
 
 namespace App\Controllers;
 
-use App\Models\F1news;
+use App\Models\F1News;
 use App\Models\Chat;
 use App\Core\App;
 
@@ -16,7 +16,7 @@ class AppController
      */
     public function publicArticle(): void
     {
-        $f1News = new F1news();
+        $f1News = new F1News();
         $link = $f1News->getLink();
         App::log($link);
 
