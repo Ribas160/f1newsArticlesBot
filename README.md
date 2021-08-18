@@ -3,10 +3,12 @@
 Redirect news links from F1news.ru to your own telegram channel.
 
 ## Intalation
-`$ cd f1newsArticlesBot/`
-<br>
-<br>
-`$ cp .env-example .env`
-<br>
-<br>
-`$ composer update`
+```bash
+$ cd f1newsArticlesBot/
+```
+```bash
+$ cp .env-example .env
+```
+```bash
+$ composer update
+```
