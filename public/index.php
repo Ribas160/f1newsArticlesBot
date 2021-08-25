@@ -30,12 +30,12 @@ function F1news(): array
 
     $content = file_get_contents($pageUrl);
     preg_match('/<item>.*?<link>(?<link>.*?)<\/link>.*?<pubDate>(?<pubDate>.*?)\s\+0300/s', $content, $matches);
-    unset($matches[0]);
+    $article = ['link' => $matches['link'], 'pubDate' => $matches['pubDate']];
 
-    if (!file_exists($jsonFile)) return newLink($jsonFile, $matches);
+    if (!file_exists($jsonFile)) return newLink($jsonFile, $article);
     
     $json = json_decode(file_get_contents($jsonFile), true);
-    if (isset($json['link']) && $json['link'] !== $matches['link']) return newLink($jsonFile, $matches);
+    if (isset($json['link']) && $json['link'] !== $matches['link']) return newLink($jsonFile, $article);
     else return [];
 }
 
