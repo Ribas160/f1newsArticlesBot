@@ -35,7 +35,8 @@ function F1news(): array
     if (!file_exists($jsonFile)) return newLink($jsonFile, $article);
     
     $json = json_decode(file_get_contents($jsonFile), true);
-    if (isset($json['link']) && $json['link'] !== $matches['link']) return newLink($jsonFile, $article);
+
+    if ($json['link'] !== $matches['link']) return newLink($jsonFile, $article);
     else return [];
 }
 
