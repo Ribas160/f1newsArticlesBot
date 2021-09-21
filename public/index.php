@@ -27,16 +27,20 @@ function F1news(): array
 {
     $pageUrl = 'https://www.f1news.ru/export/news.xml';
     $jsonFile = __DIR__  . '/../storage.json';
+    $article = [];
 
     $content = file_get_contents($pageUrl);
     preg_match('/<item>.*?<link>(?<link>.*?)<\/link>.*?<pubDate>(?<pubDate>.*?)\s\+0300/s', $content, $matches);
-    $article = ['link' => $matches['link'], 'pubDate' => $matches['pubDate']];
+    $article['link'] = (!empty($matches['link'])) ? $matches['link'] : NULL;
+    $article['pubDate'] = (!empty($matches['pubDate'])) ? $matches['pubDate'] : NULL;
+
+    if (!$article['link']) return [];
 
     if (!file_exists($jsonFile)) return newLink($jsonFile, $article);
     
     $json = json_decode(file_get_contents($jsonFile), true);
 
-    if ($json['link'] !== $matches['link']) return newLink($jsonFile, $article);
+    if ($matches['link'] !== NULL && $json['link'] !== $matches['link']) return newLink($jsonFile, $article);
     else return [];
 }
 
